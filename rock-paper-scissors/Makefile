@@ -1,7 +1,9 @@
 CXX = g++
 CXXFLAGS = -g -W -Wall -std=c++2a -O3
 LDFLAGS =
-EXEC_FILES = main app
+
+LIBS = 
+EXEC_FILES = main
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 
@@ -18,11 +20,8 @@ EXE = $(CXX) $(LDFLAGS) -o $@ $^
 main: main.o utilities.o type.o game.o
 	@$(EXE)
 
-app: utilities.o type.o game.o
-	@$(EXE) -lsfml-graphics -lsfml-windows -lsfml-system
-
 # Headers
-main app game: game.hpp
+main game: game.hpp
 type game: type.hpp
 utilities game: utilities.hpp
 
@@ -33,5 +32,3 @@ all: clean main
 
 clean clear:
 	@rm -rf $(OBJ) $(EXEC_FILES)
-
-exe: app

@@ -9,8 +9,9 @@ class Object
   public :
     std::string getName() const ;
 
-    bool isBeaten( Object o ) const ;
+    bool isBeaten( const Object o ) const ;
 
+    Object() ;
     Object( const std::string n ) ;
     Object( const std::vector<Object> w, const std::string n ) ;
 

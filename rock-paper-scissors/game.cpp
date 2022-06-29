@@ -45,34 +45,41 @@ void game()
     std::cout << "X--------------------------------------------------X" << std::endl ;
     std::cout << std::endl ;
 
+    Object obj, objRand ;
+
     for ( int i = 0 ; i < n ; i++ )
     {
       do
       {
-        std::cout << "Rock (0), Paper (1) or Scissors (2) ? " ;
-        std::cin >> j ;
-      } 
-      while ( not isIn(j, Obj) ) ;
+        do
+        {
+          std::cout << "Rock (0), Paper (1) or Scissors (2) ? " ;
+          std::cin >> j ;
+        } 
+        while ( not isIn(j, Obj) ) ;
 
-      Object obj = vect.at(j) ;
+        obj = vect.at(j) ;
 
-      k = std::rand() % vect.size() ;
+        k = std::rand() % vect.size() ;
 
-      Object objRand = vect.at(k) ;
+        objRand = vect.at(k) ;
 
-      if ( objRand.getName() == obj.getName() )
-      {
-        return ; 
-      }
-      else if ( not obj.isBeaten( objRand ) )
-      {
         std::cout << obj.getName() << " (you) vs " << objRand.getName() << std::endl ;
+
+        if ( objRand.getName() == obj.getName() )
+        {
+          std::cout << "It's a draw ! Need to rematch this round." << std::endl ;
+        }
+      }
+      while ( objRand.getName() == obj.getName() ) ;
+
+      if ( not obj.isBeaten( objRand ) )
+      {
         std::cout << "You've won this round." << std::endl ;
         m++ ;
       }
       else
       {
-        std::cout << obj.getName() << " (you) vs " << objRand.getName() << std::endl ;
         std::cout << "You've lost this round." << std::endl ;
       }
 
